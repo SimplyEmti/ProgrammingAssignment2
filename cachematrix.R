@@ -27,5 +27,5 @@ cacheSolve <- function(x, ...) {
   resultMTRX <- x$get()
   in_VERSE <- solve(resultMTRX, ...)
   x$place_inv (in_VERSE)
-  return(in_VERSE)
+
 }
