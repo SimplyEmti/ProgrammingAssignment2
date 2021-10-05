@@ -1,29 +1,31 @@
-#Through the help of the functions makeCacheMatrix and cacheSolve, this program is the answer to the exhausting process and calculation of matrix inversion.
-#Though it maximizes the use of random values and the assignment of rows and columns given by the user, this program demonstrates how R could help us analyze invertible matrix with just a few seconds.
+#This program seeks to ease the process of getting and analyzing the inverse of a function by maximizing the use of makeCacheMatrix and cacheSolve functions.
 
-#The makeCacheMatrix function is the one responsible for preparing the program to calculate the inverse of a matrix by supplying the necessary values and storing that input for later use.
-
+#In order to prepare the program to calculate the inverse matrix by setting random values of variable x and caching it, we need to use the makeCacheMatrix function.
+#using '<<-' helps the program to differentiate the value of an object in different settings.
+#this part simply lists set and acquire the matrix and calculating it to get its inverse.
 makeCacheMatrix <- function(x = matrix()) {
-  inv <- NULL
+  in_VERSE <- NULL
   set <- function(y){
-    x <<- y
-    inv <<- NULL
-  }
+    x <<- y  
+    in_VERSE <<- NULL
+  } 
   get <- function() x
-  setInverse <- function(inverse) inv <<- inverse
-  getInverse <- function() inv
-  list(set = set, get = get, setInverse = setInverse, getInverse = getInverse)     
+  place_inv <- function(inverse) in_VERSE <<- inverse
+  acq_inv <- function() in_VERSE
+  list(set = set, get = get, place_inv = place_inv, acq_inv = acq_inv)     
   
 }
 
-#cacheSolve function speaks for itself for it calculates the values given by the makeCacheMatrix and provides the data to the input, with the consideration in which if the inverse value was already given, it will proceed no further and skips computation.
+#cacheSolve function is utilized to calculate the provided data used on makeCacheMatrix function.
+#the if statement is used if the inverse of the function is already solved where it skips the calculation, gets the stored data, and returns its original form.
 cacheSolve <- function(x, ...) {
-  inv <- x$getInverse()
-  if(!is.null(inv)){
-    message("getting cached data")
-    return(inv)
+  in_VERSE <- x$acq_inv()
+  if(!is.null(in_VERSE)){
+    message("Please wait as we retrieve the cached data required.")
+    return(in_VERSE)
   }
-  mat <- x$get()
-  inv <- solve(mat, ...)
-  x$setInverse (inv)
+  resultMTRX <- x$get()
+  in_VERSE <- solve(resultMTRX, ...)
+  x$place_inv (in_VERSE)
+  return(in_VERSE)
 }
